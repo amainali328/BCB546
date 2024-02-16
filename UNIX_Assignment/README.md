@@ -46,7 +46,7 @@ du -h snp_position.txt
 
 (head -n 1 fang_et_al_genotypes.txt && grep 'ZMM' fang_et_al_genotypes.txt) | cut -f 4-986 > maize_phenotype.txt
 
-awk -f transpose. awk maize_penotype.txt > transposed_maize_phenotype.txt
+awk -f transpose. awk maize_phenotype.txt > transposed_maize_phenotype.txt
 
 sort -k1,1 transposed_maize_phenotype.txt > maize_sorted.txt
 
