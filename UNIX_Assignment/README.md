@@ -82,7 +82,7 @@ awk -f transpose.awk teosinte_penotype.txt > transposed_teosinte_phenotype.txt
 
 sort -k1,1 transposed_teosinte_phenotype.txt > teosinte_sorted.txt
 
-cut -f1,3,4 snp_position.txt | sed '1d;$d' | sort -k1,1 > snp_position_sorted.txt
+cut -f1,3,4 snp_position.txt | sed '1d' | sort -k1,1 > snp_position_sorted.txt
 
 join -t $'\t' -1 1 -2 1 snp_position_sorted.txt teosinte_sorted.txt > teosinte_snp_sorted.txt
 
