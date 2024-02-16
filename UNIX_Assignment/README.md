@@ -46,9 +46,9 @@ du -h snp_position.txt
 
 (head -n 1 fang_et_al_genotypes.txt && grep 'ZMM' fang_et_al_genotypes.txt) | cut -f 4-986 > maize_phenotype.txt
 
-awk -f transpose.awk maize_penotype.txt > transposed_maize_phenotype.txt
+awk -f transpose. awk maize_penotype.txt > transposed_maize_phenotype.txt
 
-sort -k1,1 transposed_maize_phenotypes.txt > maize_sorted.txt
+sort -k1,1 transposed_maize_phenotype.txt > maize_sorted.txt
 
 cut -f1,3,4 snp_position.txt | sed '1d' | sort -k1,1 > snp_position_sorted.txt
 
@@ -66,9 +66,9 @@ for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' maize_snp_sort
 
 Here is my brief description of what this code does:
 
-SNP_ID and SNP data for maize (group = ZMMIL, ZMMLR, and ZMMMR) is extracted from fang_et_al_genotypes.txt with header, transposed and sorted based on SNP_ID. The header and columns other than SNP_ID, Chromsome and Position are removed from snp_position.txt and sorted based on SNP_ID. The resulting two sorted files created are subsequently joined.
+SNP_ID and SNP data for maize (group = ZMMIL, ZMMLR, and ZMMMR) are extracted from fang_et_al_genotypes.txt with the header, transposed and sorted based on SNP_ID. The header and columns other than SNP_ID, Chromosome and Position are removed from snp_position.txt and sorted based on SNP_ID. The resulting two sorted files created are subsequently joined.
 For all SNPs with unknown or multiple positions in the genome (third column), their data is extracted from the joined file after a header indicating SNP_ID, Chromosome, Position and Genotype Data is added.
-A for loop is utilized to separate the data based on chromosome, sorted based on increasing or decreasing positions on the third column and a header is added to indicate SNP_ID, Chromosome, Position and Genotype Data within the file. FOr files with decreasing positions, missing data encoded by ? is replaced by - within the for loop.
+A for loop is utilized to separate the data based on chromosome, sorted based on increasing or decreasing positions on the third column and a header is added to indicate SNP_ID, Chromosome, Position and Genotype Data within the file. For files with decreasing positions, missing data encoded by ? is replaced by - within the for loop.
 
 ### Teosinte Data
 
@@ -80,7 +80,7 @@ A for loop is utilized to separate the data based on chromosome, sorted based on
 
 awk -f transpose.awk teosinte_penotype.txt > transposed_teosinte_phenotype.txt
 
-sort -k1,1 transposed_teosinte_phenotypes.txt > teosinte_sorted.txt
+sort -k1,1 transposed_teosinte_phenotype.txt > teosinte_sorted.txt
 
 cut -f1,3,4 snp_position.txt | sed '1d;$d' | sort -k1,1 > snp_position_sorted.txt
 
@@ -97,8 +97,8 @@ for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' teosinte_snp_s
 
 Here is my brief description of what this code does:
 
-SNP_ID and SNP data for teosinte (group = ZMPBA, ZMPIL, and ZMPJA) is extracted from fang_et_al_genotypes.txt with header, transposed and sorted based on SNP_ID. This sorted file, alongside the snp_position.txt sorted file mentioned in "Maize Data", are subsequently joined.
+SNP_ID and SNP data for teosinte (group = ZMPBA, ZMPIL, and ZMPJA) is extracted from fang_et_al_genotypes.txt with the header, transposed and sorted based on SNP_ID. This sorted file, alongside the snp_position.txt sorted file mentioned in "Maize Data", is subsequently joined.
 For all SNPs with unknown or multiple positions in the genome (third column), their data is extracted from the joined file after a header indicating SNP_ID, Chromosome, Position and Genotype Data is added.
-A for loop is utilized to separate the data based on the chromosome, sorted based on increasing or decreasing positions on the third column and a header is added to each column to describe the data within that colum. FOr files with decreasing positions, missing data encoded by ? is replaced by - within the for loop.
+A for loop is utilized to separate the data based on the chromosome, sorted based on increasing or decreasing positions on the third column and a header is added to each column to describe the data within that column. For files with decreasing positions, missing data encoded by ? is replaced by - within the for loop.
 
 
