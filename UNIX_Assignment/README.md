@@ -78,7 +78,7 @@ A for loop is utilized to separate the data based on chromosome, sorted based on
 
 (head -n 1 fang_et_al_genotypes.txt && grep 'ZMP' fang_et_al_genotypes.txt) | cut -f 4-986 > teosinte_phenotype.txt
 
-awk -f transpose.awk teosinte_penotype.txt > transposed_teosinte_phenotype.txt
+awk -f transpose.awk teosinte_phenotype.txt > transposed_teosinte_phenotype.txt
 
 sort -k1,1 transposed_teosinte_phenotype.txt > teosinte_sorted.txt
 
