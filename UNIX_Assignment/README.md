@@ -46,9 +46,7 @@ du -h snp_position.txt
 
 (head -n 1 fang_et_al_genotypes.txt && grep 'ZMM' fang_et_al_genotypes.txt) | cut -f 4-986 > maize_phenotype.txt
 
-awk -f transpose. awk maize_phenotype.txt > transposed_maize_phenotype.txt
-
-sort -k1,1 transposed_maize_phenotype.txt > maize_sorted.txt
+awk -f transpose. awk maize_phenotype.txt | sort -k1,1 transposed_maize_phenotype.txt > maize_sorted.txt
 
 cut -f1,3,4 snp_position.txt | sed '1d' | sort -k1,1 > snp_position_sorted.txt
 
@@ -78,9 +76,7 @@ A for loop is utilized to separate the data based on chromosome, sorted based on
 
 (head -n 1 fang_et_al_genotypes.txt && grep 'ZMP' fang_et_al_genotypes.txt) | cut -f 4-986 > teosinte_phenotype.txt
 
-awk -f transpose.awk teosinte_phenotype.txt > transposed_teosinte_phenotype.txt
-
-sort -k1,1 transposed_teosinte_phenotype.txt > teosinte_sorted.txt
+awk -f transpose.awk teosinte_phenotype.txt | sort -k1,1 | teosinte_sorted.txt
 
 cut -f1,3,4 snp_position.txt | sed '1d' | sort -k1,1 > snp_position_sorted.txt
 
