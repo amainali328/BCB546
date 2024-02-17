@@ -58,9 +58,12 @@ grep "unknown" maize_snp_sorted.txt | awk -v OFS='\t' 'BEGIN {print "SNP-ID", "C
 
 grep "multiple" maize_snp_sorted.txt | awk -v OFS='\t' 'BEGIN {print "SNP-ID", "Chromosome", "Location", "Genotype_Data"} {print}' > multiple_maize_SNP.txt
 
-for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' maize_snp_sorted.txt | sort -k3,3n | awk -v OFS='\t' 'BEGIN {print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}'> chr"$i"_maize_increasing.txt; done
+for ((i=1; i<=10; i++)); do
+    awk -v i="$i" '$2==i {print $0}' maize_snp_sorted.txt | awk -v OFS='\t' 'BEGIN {print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}' | sort -k3,3n > chr"$i"_maize_increasing.txt
+done
 
-for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' maize_snp_sorted.txt | sort -k3,3nr | sed 's/?/-/g' | awk -v OFS='\t' 'BEGIN{print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}'> chr"$i"_maize_decreasing.txt; done
+
+for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' maize_snp_sorted.txt | awk -v OFS='\t' 'BEGIN{print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}'| sort -k3,3nr | sed 's/?/-/g' | > chr"$i"_maize_decreasing.txt; done
 ```
 
 
