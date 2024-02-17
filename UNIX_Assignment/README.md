@@ -90,7 +90,7 @@ for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' teosinte_snp_s
 for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' teosinte_snp_sorted.txt | awk -v OFS='\t' 'BEGIN{print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}' | sort -k3,3nr | sed 's/?/-/g'> chr"$i"_teosinte_decreasing.txt; done
 ```
 
-Here is my brief description of what this code does:
+**Here is my brief description of what this code does:**
 At first columns 4 to 986 containing SNP IDs and SNP data are extracted for teosinte the groups (ZMPBA, ZMPIL, and ZMPJA). Since the SNP IDs are presented in the first row, the phenotype file is subsequently transposed to put the SNP in the first column followed by sorting of the files based on the first column to get the teosinte_sorted.txt file, which is now ready for joining. Similarly, the first, third and fourth columns with SNP IDs, chromosome number and position respectively are extracted from the SNP_position.txt file, removing the header and sorted based on the first column.
 The sorted files, i.e. teosinte_Sorted.txt and snp_position.txt are joined based on the first common column.
 SNPs characterized by unknown or multiple positions in the genome, identified by their presence in the third column, have their data extracted from the joined file. Preceding this extraction, a header detailing SNP_ID, Chromosome, Position, and Genotype Data is appended. 
