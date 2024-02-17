@@ -62,12 +62,11 @@ for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' maize_snp_sort
 ```
 
 
-Here is my brief description of what this code does:
-
-SNP_ID and SNP data for maize (group = ZMMIL, ZMMLR, and ZMMMR) are extracted from fang_et_al_genotypes.txt with the header, transposed and sorted based on SNP_ID. The header and columns other than SNP_ID, Chromosome and Position are removed from snp_position.txt and sorted based on SNP_ID. The resulting two sorted files created are subsequently joined.
-For all SNPs with unknown or multiple positions in the genome (third column), their data is extracted from the joined file after a header indicating SNP_ID, Chromosome, Position and Genotype Data is added.
-A for loop is utilized to separate the data based on chromosome, sorted based on increasing or decreasing positions on the third column and a header is added to indicate SNP_ID, Chromosome, Position and Genotype Data within the file. For files with decreasing positions, missing data encoded by ? is replaced by - within the for loop.
-
+**Here is my brief description of what this code does:**
+At first columns 4 to 986  containing SNP IDs and SNP data are extracted for teosinte the groups (ZMMIL, ZMMLR, and ZMMMR). Since the SNP IDs are presented in the first row, the phenotype file is subsequently transposed to put the SNP in the first column followed by sorting of the files based on the first column to get the maize_sorted.txt file, which is now ready for joining. Similarly, the first, third and fourth columns with SNP IDs, chromosome number and position respectively are extracted from the SNP_position.txt file, removing the header and sorted based on the first column.
+The sorted files, i.e. maize_Sorted.txt and snp_position.txt are joined based on the first common column.
+SNPs characterized by unknown or multiple positions in the genome, identified by their presence in the third column, have their data extracted from the joined file. Preceding this extraction, a header detailing SNP_ID, Chromosome, Position, and Genotype Data is appended. 
+A for loop is employed to separate the data based on the chromosomes (second column), subsequently sorting it based on ascending or descending positions in the third column. Additionally, a header is introduced to each column to elucidate the content within. In cases where the positions are arranged in descending order, any missing data indicated by "?" is substituted with "-". 
 ### Teosinte Data
 
 **Here is my snippet of code used for data processing:**
@@ -92,9 +91,8 @@ for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' teosinte_snp_s
 ```
 
 Here is my brief description of what this code does:
-
-SNP_ID and SNP data for teosinte (group = ZMPBA, ZMPIL, and ZMPJA) is extracted from fang_et_al_genotypes.txt with the header, transposed and sorted based on SNP_ID. This sorted file, alongside the snp_position.txt sorted file mentioned in "Maize Data", is subsequently joined.
-For all SNPs with unknown or multiple positions in the genome (third column), their data is extracted from the joined file after a header indicating SNP_ID, Chromosome, Position and Genotype Data is added.
-A for loop is utilized to separate the data based on the chromosome, sorted based on increasing or decreasing positions on the third column and a header is added to each column to describe the data within that column. For files with decreasing positions, missing data encoded by ? is replaced by - within the for loop.
-
+At first columns 4 to 986 containing SNP IDs and SNP data are extracted for teosinte the groups (ZMPBA, ZMPIL, and ZMPJA). Since the SNP IDs are presented in the first row, the phenotype file is subsequently transposed to put the SNP in the first column followed by sorting of the files based on the first column to get the teosinte_sorted.txt file, which is now ready for joining. Similarly, the first, third and fourth columns with SNP IDs, chromosome number and position respectively are extracted from the SNP_position.txt file, removing the header and sorted based on the first column.
+The sorted files, i.e. teosinte_Sorted.txt and snp_position.txt are joined based on the first common column.
+SNPs characterized by unknown or multiple positions in the genome, identified by their presence in the third column, have their data extracted from the joined file. Preceding this extraction, a header detailing SNP_ID, Chromosome, Position, and Genotype Data is appended. 
+A for loop is employed to separate the data based on the chromosomes (second column), subsequently sorting it based on ascending or descending positions in the third column. Additionally, a header is introduced to each column to elucidate the content within. In cases where the positions are arranged in descending order, any missing data indicated by "?" is substituted with "-".
 
