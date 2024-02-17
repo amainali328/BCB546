@@ -54,9 +54,9 @@ cut -f1,3,4 snp_position.txt | sed '1d' | sort -k1,1 > snp_position_sorted.txt
 
 join -t $'\t' -1 1 -2 1 snp_position_sorted.txt maize_sorted.txt > maize_snp_sorted.txt
 
-awk -v OFS='\t' 'BEGIN {print "SNP-ID", "Chromosome", "Location", "Genotype_Data"} /unknown/ {print}' maize_snp_sorted.txt > unknown_maize_SNP.txt
+grep "unknown" maize_snp_sorted.txt | awk -v OFS='\t' 'BEGIN {print "SNP-ID", "Chromosome", "Location", "Genotype_Data"} {print}' > unknown_maize_SNP.txt
 
-awk -v OFS='\t' 'BEGIN {print "SNP-ID", "Chromosome", "Location", "Genotype_Data"} /multiple/ {print}' maize_snp_sorted.txt > multiple_maize_SNP.txt
+grep "multiple" maize_snp_sorted.txt | awk -v OFS='\t' 'BEGIN {print "SNP-ID", "Chromosome", "Location", "Genotype_Data"} {print}' > multiple_maize_SNP.txt
 
 for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' maize_snp_sorted.txt | sort -k3,3n | awk -v OFS='\t' 'BEGIN {print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}'> chr"$i"_maize_increasing.txt; done
 
@@ -86,9 +86,9 @@ cut -f1,3,4 snp_position.txt | sed '1d' | sort -k1,1 > snp_position_sorted.txt
 
 join -t $'\t' -1 1 -2 1 snp_position_sorted.txt teosinte_sorted.txt > teosinte_snp_sorted.txt
 
-awk -v OFS='\t' 'BEGIN {print "SNP-ID", "Chromosome", "Location", "Genotype_Data"} /unknown/ {print}' teosinte_snp_sorted.txt > unknown_teosinte_SNP.txt
+grep "unknown" teosinte_snp_sorted.txt | awk -v OFS='\t' 'BEGIN {print "SNP-ID", "Chromosome", "Location", "Genotype_Data"} {print}' > unknown_teosinte_SNP.txt
 
-awk -v OFS='\t' 'BEGIN {print "SNP-ID", "Chromosome", "Location", "Genotype_Data"} /multiple/ {print}' teosinte_snp_sorted.txt > multiple_teosinte_SNP.txt
+grep "multiple" teosinte_snp_sorted.txt | awk -v OFS='\t' 'BEGIN {print "SNP-ID", "Chromosome", "Location", "Genotype_Data"} {print}' > multiple_teosinte_SNP.txt
 
 for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' teosinte_snp_sorted.txt | sort -k3,3n | awk -v OFS='\t' 'BEGIN {print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}'> chr"$i"_teosinte_increasing.txt; done
 
